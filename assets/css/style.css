@@ -11,3 +11,33 @@ p {
     background-color: purple;
     color: wheat;
 }
+
+#timerText {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding-right: 20px;
+    visibility: hidden;
+}
+#highscores {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 20px;
+    visibility: hidden;
+}
+
+ol {
+    list-style-position: inside;
+    text-align: center;
+    visibility: hidden;
+    background-color: purple;
+    color: wheat;
+    /* how to align them all to the left, but remain in center */
+}
+
+
+#highscores:hover, 
+#startQuiz:hover {
+    cursor: pointer;
+}

@@ -9,10 +9,20 @@
 </head>
 <body>
     <!-- think about placing things on class based  on when they appear on screen (intro, qiuestions, scores etc. ) -->
-    <h1>Coding Quiz Challenge</h1>
-    <h2 id="question"></h2>
-    <p id="prompt">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-    <button id = "startQuiz">Start Quiz</button>
+    <h1 class="start-page">Coding Quiz Challenge</h1>
+    <h2 id="question-prompt" class="questions"></h2>
+    <p id="prompt" class="start-page">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+    <button id = "startQuiz" class="start-page">Start Quiz</button>
+    <div class="timer">
+        <p id="timerText" class="hiddenByDefault">Time: <dfn id="time">0</dfn></p>
+    </div>
+    <p id="highscores" class="hiddenByDefault">View Highscores</p>
+    <ol class="questions hiddenByDefault" id="question-list" type = "I">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
 
 
     <script src ="assets/js/script.js"></script>
