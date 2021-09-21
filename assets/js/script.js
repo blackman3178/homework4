@@ -25,3 +25,14 @@ var question4 = new Question("String values must be enclosed within ___ when bei
 var question5 = new Question("A very useful tool used during the development & debugging for printing content to the debugger is: ", "JavaScript,terminal/bash,for loops,console log".split(","), 3);
 
 console.log(question5);
+
+
+// function to clear the startpage
+function clearStartPage() {
+    var quizPage = document.querySelectorAll(".start-page");
+    for (var i = 0; i < quizPage.length; i++) {
+        quizPage[i].setAttribute("style", "visibility: hidden;");
+    }
+}
+// clears start page when the start quiz button is clicked.;\
+startButton.addEventListener("click",clearStartPage);
