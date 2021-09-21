@@ -41,27 +41,65 @@ function clearStartPage() {
 // clears start page when the start quiz button is clicked.;
 startButton.addEventListener("click",clearStartPage);
 
+// gets all of the html elements that were hidden to start & makes them visible, then calls the showQuestions function.
 function askQuestions() {
-    var i = 0;
-    var pTag = document.querySelector("#prompt");
     var quizPage = document.querySelectorAll(".hiddenByDefault");
-
+    var counter = 0;
+    
     //shows the elements hidden by default 
     for ( var j = 0; j < quizPage.length; j ++) {
         quizPage[j].setAttribute("style", "visibility: visible;");
     }
+    if( counter <=3){
+        showQuestions(counter);
 
-    for (var n = 0; n < questionArray.length; n ++) {
-        
-        //wrtie function here that displays question, does game logic
+    }
+}
+
+// displays the prompt, creates the li elements holding the answers, and sets the correct or incorrect attribute
+function showQuestions(x) {
+        var pTag = document.querySelector("#prompt");
+        pTag.setAttribute("style", "visibility: visible;");
+        //pTag.innerHTML = questionArray[2].prompt;
+        // for (var n = 0; n < questionArray.length;) {
+        //     pTag.innerHTML = questionArray[n].prompt;
+        pTag.innerHTML = questionArray[x].prompt;
+            for (var i = 0; i < 4; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = questionArray[x].answers[i];
+                if (i === questionArray[x].correct) {
+                    li.setAttribute("data-correct", "correct");
+                } else {
+                    li.setAttribute("data-correct", "incorrect");
+                }
+                listEl.appendChild(li);
+            }
+    }
+
+function getWin( ) {
+    var result = null;
+    var announcement = document.createElement("p");
+    listEl.appendChild(announcement);
+    listEl.addEventListener("click",function(event) {
+        var element = event.target;
+        var state = element.getAttribute("data-correct");
+        if (state === "correct") {
+            result = true;
+            announcement.innerHTML = "That was Correct!";
+        } else {
+            result = false;
+            announcement.innerHTML = "That was False!";
+        }
+        setTimeout (function() {
+            announcement.innerHTML = "";
+        }, 3000);
+    });
+    return result;
+}
+
+    function innit () {
         
     }
-    
-    // gets the string variables from the array within the questions object and appends them to the ol element in the HTML
-    
-    var li = document.createElement("li");
-    li.innerHTML = questionArray[n].answers[r];
-    listEl.appendChild(li);
     
     // while(i < questionArray.length) {
     //     pTag.innerHTML = questionArray[i].prompt;
@@ -71,4 +109,4 @@ function askQuestions() {
     //     }
     //     i = i + 1;
     // }
-}
+
