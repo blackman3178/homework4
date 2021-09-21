@@ -41,23 +41,34 @@ function clearStartPage() {
 // clears start page when the start quiz button is clicked.;
 startButton.addEventListener("click",clearStartPage);
 
-function startQuiz() {
+function askQuestions() {
     var i = 0;
     var pTag = document.querySelector("#prompt");
-    var quizPage = document.querySelectorAll("#hiddenByDefault");
+    var quizPage = document.querySelectorAll(".hiddenByDefault");
 
     //shows the elements hidden by default 
     for ( var j = 0; j < quizPage.length; j ++) {
         quizPage[j].setAttribute("style", "visibility: visible;");
     }
 
-    pTag.innerHTML = "hi there";
+    for (var n = 0; n < questionArray.length; n ++) {
+        
+        //wrtie function here that displays question, does game logic
+        
+    }
+    
     // gets the string variables from the array within the questions object and appends them to the ol element in the HTML
+    
+    var li = document.createElement("li");
+    li.innerHTML = questionArray[n].answers[r];
+    listEl.appendChild(li);
+    
     // while(i < questionArray.length) {
     //     pTag.innerHTML = questionArray[i].prompt;
     //     for ( var n = 0; n < questionArray[i].answers.length; n ++) {
     //         var li = document.createElement("li");
     //         listEl.appendChild(li);
     //     }
+    //     i = i + 1;
     // }
 }
