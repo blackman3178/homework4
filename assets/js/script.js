@@ -2,6 +2,7 @@ var startButton = document.querySelector("#startQuiz");
 var timerElement = document.querySelector("#time");
 var listEl = document.querySelector("#question-list");
 
+var counter = 0;
 //^^ declare initial variables from HTML
 
 
@@ -27,7 +28,7 @@ var question5 = new Question("A very useful tool used during the development & d
 
 var questionArray = [question1, question2, question3, question4, question5];
 
-console.log(questionArray);
+console.log(counter);
 
 
 // function to clear the startpage and starts the questions 
@@ -44,15 +45,21 @@ startButton.addEventListener("click",clearStartPage);
 // gets all of the html elements that were hidden to start & makes them visible, then calls the showQuestions function.
 function askQuestions() {
     var quizPage = document.querySelectorAll(".hiddenByDefault");
-    var counter = 0;
+    
     
     //shows the elements hidden by default 
     for ( var j = 0; j < quizPage.length; j ++) {
         quizPage[j].setAttribute("style", "visibility: visible;");
     }
-    if( counter <=3){
+    if( counter <=3){ // TODO: how to update the counter & iterate through the questions
         showQuestions(counter);
+        var winOrLoss = getWin();
+        console.log(counter)
 
+
+        // TODO: if get win is returns false, then subtract time from the timer.
+    } else {
+        finishGame() // maybe use time as a variable to input there
     }
 }
 
@@ -60,12 +67,15 @@ function askQuestions() {
 function showQuestions(x) {
         var pTag = document.querySelector("#prompt");
         pTag.setAttribute("style", "visibility: visible;");
+
         //pTag.innerHTML = questionArray[2].prompt;
         // for (var n = 0; n < questionArray.length;) {
         //     pTag.innerHTML = questionArray[n].prompt;
         pTag.innerHTML = questionArray[x].prompt;
+
             for (var i = 0; i < 4; i++) {
                 var li = document.createElement("li");
+                li.setAttribute("class", "list-item");
                 li.innerHTML = questionArray[x].answers[i];
                 if (i === questionArray[x].correct) {
                     li.setAttribute("data-correct", "correct");
@@ -92,15 +102,50 @@ function getWin( ) {
         }
         setTimeout (function() {
             announcement.innerHTML = "";
+            counter = counter + 1;
+            console.log(counter);
+            removeAll();
+            nextQuestion();
         }, 3000);
+
+
     });
     return result;
 }
 
-    function innit () {
-        
+// removes the previous question content.
+function removeAll() {
+    while (listEl.firstChild) {
+        listEl.removeChild(listEl.firstChild);
     }
+}
+
+function nextQuestion (){
+    var pTag = document.querySelector("#prompt");
+    pTag.innerHTML = questionArray[counter].prompt;
+    for (var i = 0; i < 4; i++) {
+        var li = document.createElement("li");
+        li.innerHTML = questionArray[counter].answers[i];
+        if (i === questionArray[counter].correct) {
+            li.setAttribute("data-correct", "correct");
+        } else {
+            li.setAttribute("data-correct", "incorrect");
+        }
+        listEl.appendChild(li);
+    }
+    if (counter < 4) {
+        getWin();
+    } else {
+        finishGame();
+    }
+}
+
+function finishGame () {
+        console.log("ghame is over!!!");
+}
     
+
+
     // while(i < questionArray.length) {
     //     pTag.innerHTML = questionArray[i].prompt;
     //     for ( var n = 0; n < questionArray[i].answers.length; n ++) {

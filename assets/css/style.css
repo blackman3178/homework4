@@ -31,9 +31,20 @@ ol {
     list-style-position: inside;
     text-align: center;
     visibility: hidden;
+    /* color: wheat; */
+    /* how to align them all to the left, but remain in center */
+}
+
+.list-item {
+    align-items: center;
+    align-content: center;
     background-color: purple;
     color: wheat;
-    /* how to align them all to the left, but remain in center */
+    width: 50vw;
+    margin: 5px 5px;
+    height: 30px;
+    padding: 10px;
+    justify-content: center;
 }
 
 
